@@ -9,24 +9,20 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
-// Modelo de Tarefa
-model Task {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  completed   Boolean  @default(false)
-  createdAt   DateTime @default(now())
- 
-  // Relacionamento com Categoria
-  categoryId  Int?
-  category    Category? @relation(fields: [categoryId], references: [id])
-}
-
-// Modelo de Categoria (Flexibilidade de temas)
-model Category {
-  id    Int    @id @default(autoincrement())
-  name  String @unique
-  tasks Task[]
-}
+model User { 
+  id    Int     @id @default(autoincrement()) 
+  email String  @unique
+  name  String?
+  posts Post[]
+} 
+model Post { 
+  id        Int     @id @default(autoincrement()) 
+  title     String
+  content   String? @db.Text
+  published Boolean @default(false) 
+  author    User    @relation(fields: [authorId], references: [id]) 
+  authorId  Int
+} 
