@@ -9,6 +9,7 @@
 
 import express from "express";
 import tarefaRoutes from "./routes/tarefaRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 
 // Cria a aplicação Express
 const app = express();
@@ -38,6 +39,9 @@ app.get("/", (req, res) => {
 
 // Registra as rotas de tarefas
 app.use(tarefaRoutes);
+
+// Registra as rotas de posts
+app.use(postRoutes);
 
 // ========================================
 // TRATAMENTO DE ROTAS NÃO ENCONTRADAS
