@@ -15,11 +15,14 @@ import * as PostModel from "../models/postModel.js";
  */
 export async function listar(req, res) {
   try {
+    console.log("=== GET /posts ===");
     const posts = await PostModel.listar();
+    console.log("Posts retornados:", posts.length);
     res.status(200).json(posts);
   } catch (erro) {
-    console.error("Erro ao listar posts:", erro);
-    res.status(500).json({ erro: "Erro ao listar posts" });
+    console.error("Erro ao listar posts (Controller):", erro.message);
+    console.error("Detalhes:", erro);
+    res.status(500).json({ erro: "Erro ao listar posts", detalhes: erro.message });
   }
 }
 

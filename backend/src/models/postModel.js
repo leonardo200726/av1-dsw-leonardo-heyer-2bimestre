@@ -16,14 +16,18 @@ const prisma = new PrismaClient();
  */
 export async function listar() {
   try {
+    console.log("Tentando conectar ao Prisma...");
     const posts = await prisma.post.findMany({
       include: {
         author: true
       }
     });
+    console.log("Posts encontrados:", posts.length);
     return posts;
   } catch (erro) {
-    console.error("Erro ao listar posts:", erro);
+    console.error("Erro ao listar posts - Detalhes:", erro.message);
+    console.error("Código erro:", erro.code);
+    console.error("Stack:", erro.stack);
     throw erro;
   }
 }
