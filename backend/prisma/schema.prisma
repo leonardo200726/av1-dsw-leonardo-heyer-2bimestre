@@ -1,4 +1,4 @@
-// Este é o seu arquivo de esquema do Prisma
+// Prisma schema file 5.22.0
 
 datasource db {
   provider = "mysql"
